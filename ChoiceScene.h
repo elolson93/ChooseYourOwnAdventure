@@ -1,0 +1,3 @@
+class ChoiceScene: public Scene {
+
+};
