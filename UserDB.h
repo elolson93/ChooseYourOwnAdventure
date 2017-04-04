@@ -9,6 +9,7 @@ private:
 	std::map<int, User> m_map;
 public:
 	UserDB();
+	int getSize();
 	void insertUser(User user);
 	void deleteUser(int num);
 	User loadUser(int num);

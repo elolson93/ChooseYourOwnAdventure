@@ -2,16 +2,17 @@
 #define SAVER_H
 
 #include <string>
-#include "User.h"
+#include <fstream>
+#include "UserDB.h"
 
 class Saver: public FileAccessor {
 private:
-	//
+	std::string m_file_name;
+	std::ofstream m_output;
 public:
 	Saver();
-	Saver(std::string file_name);
 	~Saver();
-	void saveGame(User user);
+	void saveGames(UserDB db);
 };
 
 #endif

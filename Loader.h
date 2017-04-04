@@ -2,13 +2,15 @@
 #define LOADER_H
 
 #include <string>
+#include <fstream>
+#include "UserDB.h"
 
-class Loader: public FileAccessor {
+class Loader {
 private:
-	//
+	std::string m_file_name;
+	std::ifstream m_input;
 public:
 	Loader();
-	Loader(std::string file_name);
 	~Loader();
 	void loadGames(UserDB db);
 };

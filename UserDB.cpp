@@ -6,6 +6,10 @@ UserDB::UserDB() {
 
 }
 
+int User::getSize() {
+	
+}
+
 int UserDB::insertUser(User user) {
 
 }
