@@ -1,10 +1,13 @@
+#ifndef USER_H
+#define USER_H
+
 #include <string>
 
 class User {
 private:
 	int m_current_scene;
 	std::string m_user_name;
-	int m_user_score;
+	int m_current_score;
 
 public:
 	User(std::string name);
@@ -14,8 +17,10 @@ public:
 	int increaseScoreBy(int score);
 	int decreaseScoreBy(int score);
 	int getCurrentScore();
-	void setCurrentScore();
+	void setCurrentScore(int score);
 	std::string getUserName();
 	int getCurrentScene();
-	void setCurrentScene();
+	void setCurrentScene(int scene);
 };
+
+#endif

@@ -1,15 +1,23 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "Loader.h"
+#include "Saver.h"
+#include "UserDB.h"
+
 class Game {
 private:
-	//Make singleton?
-	Saver m_saver;
-	UserDB m_db;
-	Menu m_menu;
+	Saver* m_saver;
+	UserDB* m_db;
+	Loader* m_loader;
 	
 public:
-	void start();
+	Game();
+	~Game();
+	void displayGameTitle();
+	User* newGame();
+	User* loadGame();
+	int deletePlayer();
 
 };
 

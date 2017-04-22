@@ -5,14 +5,14 @@
 #include <fstream>
 #include "UserDB.h"
 
-class Saver: public FileAccessor {
+class Saver {
 private:
 	std::string m_file_name;
 	std::ofstream m_output;
 public:
 	Saver();
 	~Saver();
-	void saveGames(UserDB db);
+	void saveGames(UserDB* db);
 };
 
 #endif

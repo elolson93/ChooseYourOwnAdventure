@@ -11,11 +11,11 @@ Saver::~Saver() {
 	m_output.close();
 }
 
-void Saver::saveGames(UserDB db) {
-	for (int i = 0; i < db.getSize(); ++i)
+void Saver::saveGames(UserDB* db) {
+	for (int i = 0; i < db->getSize(); ++i)
 	{
-		User temp = db.loadUser(i);
-		output << temp.getUserName() << "," << temp.getCurrentScene();
-		output << "," << temp.getCurrentScore() << endl;
+		User* temp = db->loadUser(i);
+		m_output << temp->getUserName() << "," << temp->getCurrentScene();
+		m_output << "," << temp->getCurrentScore() << endl;
 	}
 }

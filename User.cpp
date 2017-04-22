@@ -27,8 +27,8 @@ int User::getCurrentScene() {return m_current_scene;}
 
 void User::setCurrentScene(int scene) {m_current_scene = scene;}
 
-string User::getUserName() {return m_user_name}
+string User::getUserName() {return m_user_name;}
 
 void User::viewPlayer() {
-	cout << "Player: " << m_user_name << ",\tScene: " << m_current_scene <<",\tScore: " << m_current_score << endl;
+	cout << "Player: " << m_user_name << "\tScene: " << m_current_scene <<"\tScore: " << m_current_score << endl;
 }
