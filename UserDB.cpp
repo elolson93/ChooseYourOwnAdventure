@@ -15,13 +15,13 @@ int UserDB::insertUser(User* user) {
 }
 
 int UserDB::deleteUser(int num) {
-	delete m_vector.at(num-1);
-	m_vector.erase(m_vector.begin() + num-1);
+	delete m_vector.at(num);
+	m_vector.erase(m_vector.begin() + num);
 	return 1;
 }
 
 User* UserDB::loadUser(int num) {
-	return m_vector.at(num - 1);
+	return m_vector.at(num);
 }
 
 void UserDB::viewUsers() {

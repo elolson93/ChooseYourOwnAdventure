@@ -1,17 +1,20 @@
 #include "Game.h"
-// #include "Loader.h"
-// #include "Saver.h"
-// #include "UserDB.h"
 #include <iostream>
 
 using namespace std;
 
 Game::Game() {
 	m_db = new UserDB();
+	m_user = NULL;
+
+	m_loader = new Loader();
+	m_loader->loadGames(m_db);
+	delete m_loader;
 }
 
 Game::~Game() {
 	delete m_db;
+	delete m_user;
 }
 
 void Game::displayGameTitle() {
@@ -31,12 +34,6 @@ User* Game::newGame() {
 }
 
 User* Game::loadGame() {
-	if (m_db->getSize() == 0) {
-		m_loader = new Loader();
-		m_loader->loadGames(m_db);
-		delete m_loader;
-	}
-
 	int input = 0;
 
 	if (m_db->getSize() == 0) {
@@ -51,16 +48,11 @@ User* Game::loadGame() {
 	if (input == 0) {
 		return NULL;
 	} else {
-		return m_db->loadUser(input);
+		return m_db->loadUser(input-1);
 	}
 }
 
 int Game::deletePlayer() {
-	if (m_db->getSize() == 0) {
-		m_loader = new Loader();
-		m_loader->loadGames(m_db);
-		delete m_loader;
-	}
 	int input = 0;
 
 	if (m_db->getSize() == 0) {
@@ -75,61 +67,27 @@ int Game::deletePlayer() {
 	if (input == 0) {
 		return -1;
 	} else {
-		return m_db->deleteUser(input);
+		return m_db->deleteUser(input-1);
 	}
 }
 
-int main()
-{
-	Game* game = new Game();
+void Game::setActiveUser(User* user) {
+	m_user = user;
+}
 
-	game->displayGameTitle();
+User* Game::getActiveUser() {
+	return m_user;
+}
 
-	int option = 0;
-	while (option == 0) {
-		cout << "Please select an option from the list below:" << endl;
-		cout << "1. ) Load Game" << endl;
-		cout << "2. ) Delete Game" << endl;
-		cout << "3. ) Start New Game" << endl;
-		cout << "4. ) Quit" << endl;
-		cin >> option;
+void Game::save() {
+	m_saver = new Saver();
+	m_saver->saveGames(m_db);
+	delete m_saver;
+}
 
-		switch (option) {
-			case 1: {
-				cout << endl << "Load game selected." << endl << endl;
-				User* temp = game->loadGame();
-				temp->viewPlayer();
-				break;
-			}
-			case 2: {
-				cout << "Delete game selected." << endl;
-				game->deletePlayer();
-				option = 0;
-				cout << endl;
-				break;
-			}
-			case 3: {
-				cout << endl << "New game selected" << endl << endl;
-				User* temp = game->newGame();
-				temp->viewPlayer();
-				break;
-			}
-			case 4: {
-				cout << "Quit selected" << endl;
-				break;
-			} 
-			default: {
-				cout << "Please select a valid option!" << endl << endl;
-				option = 0;
-			}
-		}
-	}
-
-
-
-	// Saver* saver = new Saver;
-	// cout << "Saving the games..." << endl;
-	// saver->saveGames(db);
-
-	return 0;
+void Game::play() {
+	m_manager = new SceneManager(m_user);
+	cout << endl << "Beginning the adventure..." << endl << endl;
+	m_manager->begin();
+	delete m_manager;
 }

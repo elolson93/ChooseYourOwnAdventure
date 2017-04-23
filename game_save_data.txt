@@ -1,3 +1,5 @@
-Adam,1,1
-Beatrix,2,2
-Clyde,3,3
+tyy,1,300
+hhg,1,0
+amber,1,300
+nix,1,0
+rob,6,200
